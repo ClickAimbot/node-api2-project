@@ -90,13 +90,13 @@ router.put('/:id', async (req, res) => {
         }
     }
 })
-router.get('/:id/messages', async (req, res) => {
+router.get('/:id/comments', async (req, res) => {
     try {
         const post = await Post.findById(req.params.id)
         if (!post) {
             res.status(404).json({message: 'The post with the specified ID does not exist'})
         } else {
-            const messages = await Post.findPostMessages(req.params.id)
+            const messages = await Post.findPostComments(req.params.id)
             res.json(messages)
         }
     }  catch (error) {
